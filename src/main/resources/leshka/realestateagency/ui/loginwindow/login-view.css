@@ -1,0 +1,74 @@
+#rightBlock{
+	-fx-background-color: #C55953;
+}
+
+#leftBlock{
+	-fx-background-color: #4F2540;
+}
+
+
+.textFields{
+   -fx-background-color: #C55953;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+ 	-fx-font-family: Arial;
+ 	-fx-background-radius: 1;
+ 	-fx-border-width: 0 0 1 0;
+ 	-fx-border-color: white;
+ 	-fx-text-fill: white;
+ 
+}
+
+.textFields:focused{
+	
+}
+
+.loginButtons{
+	-fx-background-color: #C55953;
+    -fx-background-radius: 0;
+    -fx-text-fill: white;
+    -fx-border-width: 0.5 0.5 0.5 0.5;
+    -fx-border-color: white;
+}
+
+.loginButtons:hover{
+	-fx-background-color: #a83e38;
+
+}
+
+.loginButtons:pressed{
+	-fx-background-color: #86322d;
+}
+
+
+#forgotPass{
+	-fx-background-color: transpared;
+	 -fx-text-fill: white;
+}
+
+#forgotPass:hover{
+	-fx-background-color: #a83e38;
+}
+
+#forgotPass:pressed{
+	-fx-background-color: #86322d;
+	
+}
+
+.check-box .box {
+
+-fx-background-color: white;
+
+-fx-border-radius:3px; 
+
+}
+
+.check-box:selected .mark {
+
+-fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+	-fx-background-color:#4F2540;
+}

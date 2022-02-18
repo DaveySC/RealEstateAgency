@@ -1,0 +1,32 @@
+#coolBox{
+		-fx-background-color: #C55953;
+}
+
+.text-field{
+-fx-background-color: #C55953;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+ 	-fx-font-family: Arial;
+ 	-fx-background-radius: 1;
+ 	-fx-border-width: 0 0 1 0;
+ 	-fx-border-color: white;
+ 	-fx-text-fill: white;
+}
+
+#coolButton{
+	-fx-background-color: #C55953;
+    -fx-background-radius: 0;
+    -fx-text-fill: white;
+    -fx-border-width: 0.5 0.5 0.5 0.5;
+    -fx-border-color: white;
+}
+
+
+#coolButton:hover{
+	-fx-background-color: #a83e38;
+
+}
+
+#coolButton:pressed{
+	-fx-background-color: #86322d;
+}
