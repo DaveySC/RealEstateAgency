@@ -49,9 +49,10 @@
             <Insets />
          </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
          <children>
             <Button mnemonicParsing="false" onAction="#done" prefHeight="38.0" prefWidth="166.0" text="Готово" textAlignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#addNewObj" prefHeight="75.0" prefWidth="161.0" text="Добавить новый объект" />
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" />

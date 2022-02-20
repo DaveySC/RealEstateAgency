@@ -9,8 +9,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -29,24 +27,8 @@
               </items>
             </MenuButton>
             <Pane prefHeight="59.0" prefWidth="433.0" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" styleClass="buttonsUp">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/icons8-сердце-64.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" styleClass="buttonsUp">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/icons8-будильник-30.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" styleClass="buttonsUp" text="Мои объявления" />
-            <Button mnemonicParsing="false" onAction="#postFlat" prefHeight="30.0" prefWidth="192.0" styleClass="buttonsUp" text="Разместить объявление">
+            <Button fx:id="myAdButton" mnemonicParsing="false" onAction="#showMyAdvertisement" prefHeight="30.0" prefWidth="166.0" styleClass="buttonsUp" text="Мои объявления" />
+            <Button fx:id="postButton" mnemonicParsing="false" onAction="#postFlat" prefHeight="30.0" prefWidth="192.0" styleClass="buttonsUp" text="Разместить объявление">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Button>
@@ -56,31 +38,10 @@
    <center>
       <VBox id="rootVbox" prefHeight="659.0" prefWidth="1122.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="144.0" prefWidth="1025.0">
+            <VBox alignment="CENTER" prefHeight="0.0" prefWidth="1122.0" />
+            <HBox prefHeight="762.0" prefWidth="1122.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="741.0">
-                     <children>
-                        <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" styleClass="menuButtonsDown" text="Купить Арендовать" textFill="WHITE">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
-                        <TextField prefHeight="25.0" prefWidth="356.0" promptText="поиск по объявлениям" />
-                        <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" styleClass="menuButtonsDown" text="Район" textFill="WHITE">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" styleClass="buttonsDown" text="Найти" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <HBox prefHeight="629.0" prefWidth="1122.0">
-               <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="533.0" prefWidth="324.0" spacing="10.0" stylesheets="@start-view.css">
+                  <VBox alignment="TOP_CENTER" prefHeight="727.0" prefWidth="260.0" spacing="10.0" stylesheets="@start-view.css">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="260.0">
                            <children>

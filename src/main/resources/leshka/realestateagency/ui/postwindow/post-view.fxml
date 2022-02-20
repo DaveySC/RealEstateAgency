@@ -35,6 +35,16 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></Text>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Площадь" textAlignment="CENTER" wrappingWidth="120.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="areaTextField" prefHeight="35.0" prefWidth="300.0" styleClass="rightTextFields" />
+               </children>
+            </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Цена" textAlignment="CENTER" wrappingWidth="120.0">
@@ -118,7 +128,10 @@
                         <MenuItem mnemonicParsing="false" text="Action 2" />
                      </items>
                   </MenuButton>
-                  <Button mnemonicParsing="false" onAction="#addNewCompany" text="Новая компания" />
+                  <Button mnemonicParsing="false" onAction="#addNewCompany" text="Новая компания">
+                     <HBox.margin>
+                        <Insets left="52.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
@@ -149,13 +162,16 @@
                   </MenuButton>
                </children>
                <VBox.margin>
-                  <Insets bottom="50.0" />
+                  <Insets bottom="20.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#addInfo" prefHeight="25.0" prefWidth="164.0" text="Добавить инфраструктуру" />
                </children>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
             </HBox>
             <Button id="bestButton" maxHeight="100.0" minHeight="30.0" minWidth="0.0" mnemonicParsing="false" onAction="#post" prefHeight="47.0" prefWidth="209.0" text="Добавить объявление">
                <VBox.margin>

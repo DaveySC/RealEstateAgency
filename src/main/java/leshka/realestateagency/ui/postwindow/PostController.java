@@ -20,8 +20,10 @@ import javafx.stage.Stage;
 import leshka.realestateagency.data.DataBaseHandler;
 import leshka.realestateagency.data.FlatInfo;
 import leshka.realestateagency.data.HouseInfo;
+import leshka.realestateagency.data.InfrastructureInfo;
 import leshka.realestateagency.ui.infowindow.InfoController;
 import leshka.realestateagency.ui.newcompanywindow.CompanyController;
+import leshka.realestateagency.ui.startwindow.StartController;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,6 +31,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class PostController {
@@ -37,7 +40,14 @@ public class PostController {
     DataBaseHandler dataBaseHandler;
     CompanyController companyController;
     InfoController infoController;
+    ArrayList<InfrastructureInfo> infrastructureInfoArrayList;
+
     public int rateCompany = 0;
+
+
+    public void initInfrastructureInfoArrayList(ArrayList<InfrastructureInfo> infrastructureInfoArrayList) {
+        this.infrastructureInfoArrayList = infrastructureInfoArrayList;
+    }
 
     public void setCompanyController(CompanyController companyController) {
         this.companyController = companyController;
@@ -69,6 +79,7 @@ public class PostController {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(stage);
         if(file != null && correctFile(file)) {
+            correctFile = file;
             GraphicsContext gc = canvas.getGraphicsContext2D();
             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             try {
@@ -171,7 +182,8 @@ public class PostController {
             e.printStackTrace();
         }
     }
-
+    @FXML
+    private TextField areaTextField;
     @FXML
     private TextField priceTextField;
     @FXML
@@ -186,6 +198,119 @@ public class PostController {
         this.flatInfo.setNumberOfRooms(Integer.parseInt(roomsTextField.getText()));
         this.flatInfo.setFloor(Integer.parseInt(floorTextField.getText()));
         this.houseInfo.setNumber(Integer.parseInt(numberTextField.getText()));
+        this.flatInfo.setArea(Integer.parseInt(areaTextField.getText()));
+        String query = "select max(номер_списка) as number from список_объектов_в_инфраструктуре;";
+        ResultSet result = this.dataBaseHandler.executeQuery(query);
+        int maxNumberInList = -1;
+        try {
+            if (result.next()) {
+                String helper = result.getString("number");
+                maxNumberInList = Integer.parseInt(helper);
+                maxNumberInList += 1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        for (InfrastructureInfo info : infrastructureInfoArrayList) {
+            query = "insert into список_объектов_в_инфраструктуре(номер_списка, ID_объекта) values(" +
+                        "'" + maxNumberInList + "', " +
+                        "'" + info.getIdOjb() + "'" +
+                    ");";
+            this.dataBaseHandler.executeAction(query);
+        }
+
+        query = "insert into инфраструктура(номер_списка) values("+ maxNumberInList +");";
+        this.dataBaseHandler.executeAction(query);
+        query = "select * from инфраструктура where номер_списка = "+  maxNumberInList +";";
+        result = this.dataBaseHandler.executeQuery(query);
+        String idInfrastructure = "";
+        try {
+            if (result.next()) {
+                idInfrastructure = result.getString("ID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        this.houseInfo.setIdInfrastructure(idInfrastructure);
+
+        query = "select * from управляющая_компания where Название = '"+ this.houseInfo.getManCom() +"';";
+        result = this.dataBaseHandler.executeQuery(query);
+        int idManComp = -1;
+        try {
+            if (result.next()) {
+                idManComp = Integer.parseInt(result.getString("ID"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        query = "select * from улица where Название = '"+ this.houseInfo.getStreet() +"';";
+        result = this.dataBaseHandler.executeQuery(query);
+        int idStreet = -1;
+        try {
+            if (result.next()) {
+                idStreet = Integer.parseInt(result.getString("ID"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        query = "select * from состояние_дома where Состояние = '"+ this.houseInfo.getCondition() +"';";
+        result = this.dataBaseHandler.executeQuery(query);
+        int idCondition = -1;
+        try {
+            if (result.next()) {
+                idCondition = Integer.parseInt(result.getString("ID"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        query = "insert into дом(Номер_дома, ID_тип_дома, ID_управляющей_компании," +
+                                        "ID_улицы, ID_инфраструктуры, ID_состояние_дома) values(" +
+                    "'" + this.houseInfo.getNumber() + "', " +
+                    "'" + this.houseInfo.getType() + "', " +
+                    "'" + idManComp + "', " +
+                    "'" + idStreet + "', " +
+                    "'" + Integer.parseInt(this.houseInfo.getIdInfrastructure()) + "', " +
+                    "'" + idCondition + "'" +
+                ");";
+
+        this.dataBaseHandler.executeAction(query);
+
+
+        query = "select * from дом where ID_инфраструктуры = "+ Integer.parseInt(this.houseInfo.getIdInfrastructure())+";";
+        result = this.dataBaseHandler.executeQuery(query);
+        int idHouse = -1;
+        try {
+            if (result.next()) {
+                idHouse = Integer.parseInt(result.getString("ID"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        query = "insert into квартиры(Цена, Количество_комнат, Этаж, ID_дома, ID_тип_квартиры, Площадь, Изображение) values(" +
+                    "" + this.flatInfo.getPrice() + "," +
+                    "" + this.flatInfo.getNumberOfRooms() + "," +
+                    "" + this.flatInfo.getFloor() + "," +
+                    "" + idHouse + "," +
+                    "" + this.flatInfo.getFlatTypeID() + "," +
+                    "" + this.flatInfo.getArea() + "," +
+                    "'" + correctFile.getName() + "'" +
+                ");";
+        this.dataBaseHandler.executeAction(query);
+        Stage stage = (Stage) this.areaTextField.getScene().getWindow();
+        this.startController.doAllCoolThings(null);
+        stage.close();
     }
 
     @FXML
@@ -249,7 +374,6 @@ public class PostController {
         }
     }
 
-
     @FXML
     private MenuButton houseType;
 
@@ -278,4 +402,8 @@ public class PostController {
 
     }
 
+    private StartController startController;
+    public void setPostController(StartController startController) {
+        this.startController = startController;
+    }
 }

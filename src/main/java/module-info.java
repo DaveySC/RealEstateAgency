@@ -35,4 +35,7 @@ module leshka.realestateagency {
     opens leshka.realestateagency.ui.infowindow to javafx.fxml;
     exports leshka.realestateagency.ui.infowindow;
 
+
+    opens leshka.realestateagency.ui.addnewojbwindow to javafx.fxml;
+    exports leshka.realestateagency.ui.addnewojbwindow;
 }

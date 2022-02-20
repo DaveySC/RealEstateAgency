@@ -3,52 +3,88 @@ package leshka.realestateagency.data;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.TextArea;
 
 public class FlatInfo {
 
     private Canvas canvas;
-    private final SimpleStringProperty flatInfo;
-    private final SimpleStringProperty floatRealtor;
+    private final TextArea flatInfo;
+    private final TextArea floatRealtor;
     private final SimpleIntegerProperty price;
     private final SimpleIntegerProperty numberOfRooms;
     private final SimpleIntegerProperty floor;
     private final SimpleIntegerProperty houseID;
     private final SimpleIntegerProperty flatTypeID;
-
-    public FlatInfo(Canvas canvas, SimpleStringProperty flatInfo, SimpleStringProperty floatRealtor, SimpleIntegerProperty price, SimpleIntegerProperty numberOfRooms, SimpleIntegerProperty floor, SimpleIntegerProperty houseID, SimpleIntegerProperty flatTypeID) {
-        this.canvas = canvas;
-        this.flatInfo = flatInfo;
-        this.floatRealtor = floatRealtor;
-        this.price = price;
-        this.numberOfRooms = numberOfRooms;
-        this.floor = floor;
-        this.houseID = houseID;
-        this.flatTypeID = flatTypeID;
-    }
+    private final SimpleIntegerProperty area;
+    private final SimpleStringProperty image;
 
     public FlatInfo(Canvas canvas, String flatInfo, String floatRealtor) {
         this.canvas = canvas;
-        this.flatInfo = new SimpleStringProperty(flatInfo);
-        this.floatRealtor = new SimpleStringProperty(floatRealtor);
+        this.flatInfo = new TextArea(flatInfo);
+        this.floatRealtor = new TextArea(floatRealtor);
         this.flatTypeID = null;
         this.price = null;
         this.numberOfRooms = null;
         this.houseID = null;
         this.floor = null;
+        this.area = new SimpleIntegerProperty();
+        this.image = new SimpleStringProperty();
+        this.flatInfo.setStyle("-fx-wrap-text: true");
+        this.floatRealtor.setStyle("-fx-wrap-text: true");
     }
 
     public FlatInfo() {
         this.canvas = new Canvas();
-        this.flatInfo = new SimpleStringProperty();
-        this.floatRealtor = new SimpleStringProperty();
+        this.flatInfo = new TextArea();
+        this.floatRealtor = new TextArea();
         this.flatTypeID = new SimpleIntegerProperty();
         this.price = new SimpleIntegerProperty();
         this.numberOfRooms = new SimpleIntegerProperty();
         this.houseID = new SimpleIntegerProperty();
         this.floor = new SimpleIntegerProperty();
+        this.area = new SimpleIntegerProperty();
+        this.image = new SimpleStringProperty();
+        this.flatInfo.setStyle("-fx-wrap-text: true");
+        this.floatRealtor.setStyle("-fx-wrap-text: true");
+    }
+
+    public FlatInfo(int price, int numberOfRooms, int floor, int houseID, int typeID, int area, String imageID) {
+        this.canvas = new Canvas();
+        this.flatInfo = new TextArea();
+        this.floatRealtor = new TextArea();
+        this.flatTypeID = new SimpleIntegerProperty(typeID);
+        this.price = new SimpleIntegerProperty(price);
+        this.numberOfRooms = new SimpleIntegerProperty(numberOfRooms);
+        this.houseID = new SimpleIntegerProperty(houseID);
+        this.floor = new SimpleIntegerProperty(floor);
+        this.area = new SimpleIntegerProperty(area);
+        this.image = new SimpleStringProperty(imageID);
+        this.flatInfo.setStyle("-fx-wrap-text: true");
+        this.floatRealtor.setStyle("-fx-wrap-text: true");
+    }
+
+    public void setImage(String image) {
+        this.image.set(image);
+    }
+
+    public String getImage() {
+        return image.get();
+    }
+
+    public SimpleStringProperty imageProperty() {
+        return image;
+    }
+
+    public void setArea(int area) {
+        this.area.set(area);
+    }
+
+    public int getArea() {
+        return area.get();
+    }
+
+    public SimpleIntegerProperty areaProperty() {
+        return area;
     }
 
     public Canvas getCanvas() {
@@ -60,20 +96,14 @@ public class FlatInfo {
     }
 
     public String getFlatInfo() {
-        return flatInfo.get();
-    }
-
-    public SimpleStringProperty flatInfoProperty() {
-        return flatInfo;
+        return flatInfo.getText();
     }
 
     public String getFloatRealtor() {
-        return floatRealtor.get();
+        return floatRealtor.getText();
     }
 
-    public SimpleStringProperty floatRealtorProperty() {
-        return floatRealtor;
-    }
+
 
     public void setPrice(int price) {
         this.price.set(price);
@@ -136,10 +166,15 @@ public class FlatInfo {
     }
 
     public void setFlatInfo(String flatInfo) {
-        this.flatInfo.set(flatInfo);
+        this.flatInfo.setText(flatInfo);
     }
 
     public void setFloatRealtor(String floatRealtor) {
-        this.floatRealtor.set(floatRealtor);
+        this.floatRealtor.setText(floatRealtor);
+    }
+
+    public void setStyleToTextArea(String s) {
+        this.flatInfo.setStyle(s);
+        this.floatRealtor.setStyle(s);
     }
 }

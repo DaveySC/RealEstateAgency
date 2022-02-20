@@ -3,7 +3,6 @@ package leshka.realestateagency.data;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.util.ArrayList;
 
 public class HouseInfo {
     private SimpleIntegerProperty number;
@@ -11,15 +10,35 @@ public class HouseInfo {
     private SimpleStringProperty manCom;
     private SimpleStringProperty street;
     private SimpleStringProperty condition;
-    private ArrayList<InfrastructureInfo> infrastructureInfo;
+    private SimpleStringProperty idInfrastructure;
 
-    public HouseInfo(Integer number, Integer type, String manCom, String street, String condition) {
+    public HouseInfo(Integer number, Integer type, String manCom, String street, String condition, String idInfrastructure) {
         this.number = new SimpleIntegerProperty(number);
         this.type = new SimpleIntegerProperty(type);
         this.manCom = new SimpleStringProperty(manCom);
         this.street = new SimpleStringProperty(street);
         this.condition = new SimpleStringProperty(condition);
-        this.infrastructureInfo = new ArrayList<>();
+        this.idInfrastructure = new SimpleStringProperty(idInfrastructure);
+    }
+
+    public void setNumber(int number) {
+        this.number.set(number);
+    }
+
+    public void setType(int type) {
+        this.type.set(type);
+    }
+
+    public void setIdInfrastructure(String idInfrastructure) {
+        this.idInfrastructure.set(idInfrastructure);
+    }
+
+    public String getIdInfrastructure() {
+        return idInfrastructure.get();
+    }
+
+    public SimpleStringProperty idInfrastructureProperty() {
+        return idInfrastructure;
     }
 
     public HouseInfo() {
@@ -28,15 +47,8 @@ public class HouseInfo {
         this.manCom = new SimpleStringProperty();
         this.street = new SimpleStringProperty();
         this.condition = new SimpleStringProperty();
-        this.infrastructureInfo = new ArrayList<>();
-    }
+        this.idInfrastructure = new SimpleStringProperty();
 
-    public void setInfrastructureInfo(ArrayList<InfrastructureInfo> infrastructureInfo) {
-        this.infrastructureInfo = infrastructureInfo;
-    }
-
-    public ArrayList<InfrastructureInfo> getInfrastructureInfo() {
-        return infrastructureInfo;
     }
 
     public void setNumber(Integer number) {
