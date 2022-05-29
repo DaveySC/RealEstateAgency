@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="leshka.realestateagency.ui.addnewojbwindow.AddNewObjController">
+   <children>
+      <VBox alignment="CENTER" layoutX="265.0" layoutY="186.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Описание" textAlignment="CENTER" wrappingWidth="70.0" />
+                  <TextArea fx:id="textField2" prefHeight="100.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Тип объекта" textAlignment="CENTER" wrappingWidth="70.0" />
+                  <MenuButton fx:id="typeField" mnemonicParsing="false" popupSide="RIGHT" prefWidth="130.0" text="Тип">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#setHospitl" text="Больница" />
+                      <MenuItem mnemonicParsing="false" onAction="#setSchool" text="Школа" />
+                        <MenuItem mnemonicParsing="false" onAction="#setUniver" text="Университет" />
+                        <MenuItem mnemonicParsing="false" onAction="#setPark" text="Парк" />
+                        <MenuItem mnemonicParsing="false" onAction="#setSkver" text="Сквер" />
+                    </items>
+                     <HBox.margin>
+                        <Insets right="70.0" />
+                     </HBox.margin>
+                  </MenuButton>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#add" prefHeight="13.0" prefWidth="131.0" text="добавить">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
